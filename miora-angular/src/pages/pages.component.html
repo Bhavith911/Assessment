@@ -144,7 +144,7 @@
               <div class="select-container">
                 <select id="student"  class="form-control" formControlName="studentName" >
                   <option value="">Select Student</option>
-                  <option *ngFor="let student of listOfStudents" [value]="student.id">
+                  <option *ngFor="let student of listOfStudents" [value]="student.firstName+' '+student.lastName">
                     {{ student.firstName }} {{ student.lastName }}
                   </option>
                 </select>
