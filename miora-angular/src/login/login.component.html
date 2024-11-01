@@ -1,0 +1,37 @@
+<div class="login-container">
+    <div class="login-right">
+      <div class="form-container">
+        <span class="image-span">
+          <div class="logo-in position-absolute">
+            <div class="yellow-half-circle"></div>
+            <div class="blue-half-circle"></div>
+          </div>
+          <img class="position-relative login-background" src="../assets/woman-typing-writing-windows.jpg" alt="Logo"  />
+        </span>
+        <span class="form-area">
+          <div class="tab-buttons">
+            <button class="tab-login active">Login</button>
+            <button class="tab-reg">Register</button>
+          </div>
+          <h2>Welcome</h2>
+          <p>Please login to your account</p>
+          <form>
+            <label for="username" class="input-label">Username or Email</label>
+            <input type="text" id="username" [(ngModel)]="username"  [ngModelOptions]="{standalone: true}"  class="input-field" />
+            
+            <label for="password" class="input-label">Password</label>
+            <input type="password" id="password" [(ngModel)]="password"  [ngModelOptions]="{standalone: true}"  class="input-field" />
+            
+            <div class="tab-buttons">
+                <p class="tab-para"><u>Forgot password</u></p>
+                <button class="tab-ok active" (click)="logIn()">Ok</button>
+            </div>
+        </form>
+        
+          <button class="register-button">Register your School in Our Apps</button>
+          <p class="policy-text">Terms and Conditions & Privacy Policy</p>
+        </span>
+      </div>
+    </div>
+  </div>
+  

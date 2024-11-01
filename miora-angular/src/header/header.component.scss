@@ -1,0 +1,49 @@
+.navbar {
+    background: radial-gradient(circle, #0096c7, #1e3c72);
+    height: 40px;
+}
+
+.ntt-logo {
+    color: white;
+    width: 140px;
+    max-width: 100%;
+}
+
+.total-reward-logo {
+    color: white;
+    width: 36px;
+    max-width: 100%;
+    border-radius: 20px;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.tool-name {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+}
+.dev-tool{
+    font-size: small;
+    vertical-align: super;
+}
+
+.logged-in-user {
+    font-style: italic;
+    color: white;
+    font-size: 13px;
+}
+
+.show {
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: #ce4257;
+    color: white;
+}
+
+.btn-logout{
+    background-color: #ced4da;
+}

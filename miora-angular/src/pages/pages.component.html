@@ -1,0 +1,206 @@
+<div class="page-header">
+  <div class="d-flex flex-row">
+    <div class="logo-in position-absolute">
+      <div class="yellow-half-circle"></div>
+      <div class="blue-half-circle"></div>
+    </div>
+    <span class="school-name">Delhi Public School</span>
+  </div>
+  <span class="profile-section"> 
+    <span class="free-trial">
+      <span class="gray-text">Free Trial - </span>
+      <a href="#" class="yellow-text">30 Days Trial</a>&nbsp;&nbsp;
+      <a href="#" class="black-text">Buy Now</a>
+    </span>
+    <div class="user-profile">
+      <img class="profile-image" src="../assets/profile.jpg" alt="Profile Image">
+      John Doreamon &nbsp;<i class="bi bi-chevron-down"></i> &nbsp; <i class="bi bi-bell-fill"></i>
+      &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="    transform: rotate(100deg);" fill="currentColor" class="bi bi-escape" viewBox="0 0 16 16" (click)="logout()">
+        <path d="M8.538 1.02a.5.5 0 1 0-.076.998 6 6 0 1 1-6.445 6.444.5.5 0 0 0-.997.076A7 7 0 1 0 8.538 1.02"/>
+        <path d="M7.096 7.828a.5.5 0 0 0 .707-.707L2.707 2.025h2.768a.5.5 0 1 0 0-1H1.5a.5.5 0 0 0-.5.5V5.5a.5.5 0 0 0 1 0V2.732z"/>
+      </svg>
+    </div> &nbsp;
+  </span>
+  
+</div>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="user">
+        <div class="user-name">Jane Doreamon</div>
+        <i class="bi bi-border-width"></i>
+    </div>
+    
+      <ul class="menu">
+        <li class="menu-heading"> &nbsp;&nbsp;&nbsp;<i class="bi bi-eye">&nbsp;&nbsp;</i>Go To Super Admin</li>
+        <li class="menu-heading"> &nbsp;&nbsp;&nbsp;<i class="bi bi-stack">&nbsp;&nbsp;</i> My School</li>
+        <li class="menu-heading"> &nbsp;&nbsp;&nbsp;<i class="bi bi-eye">&nbsp;&nbsp;</i>School Management</li>
+        <li class="menu-heading" [ngClass]="toggleDropdown?'active':''" (click)="toggleSwitch()"> &nbsp;&nbsp;&nbsp;<i class="bi bi-eye">&nbsp;&nbsp;</i>Academics</li>
+        @if(toggleDropdown){
+          <div class="dropdown-list">
+            <li class="menu-item"><i class="bi bi-calculator">&nbsp;&nbsp;</i>Dashboard</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Class</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Sections</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Subjects</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Time Table</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Attendance</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Student Leave</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Study Materials</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>home Work</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Notice Board</li>
+            <li class="menu-item"><i class="bi bi-file-earmark-fill">&nbsp;&nbsp;</i>Events</li>
+          </div>
+        }
+      </ul>
+    </aside>
+    <!-- Main Content -->
+    <main class="content">
+      <header class="header">
+        <span>Home / Academic / Subjects</span>
+      </header>
+      <section class="student-leave">
+        <h1>Student Leaves</h1>
+        <div class="controls">
+          <select>
+            <option>2022-2023</option>
+          </select>
+          <div class="search-container">
+            <input type="text" placeholder="Search Student" class="search-input" />
+            <i class="bi bi-search search-icon"></i>
+          </div>
+          
+          <button class="add-new-leave" (click)="toggleAddLeave()">+ ADD NEW LEAVE</button>
+        </div>
+        <!-- Student Leave Table -->
+        <table>
+          <thead>
+            <tr>
+              <th>Enrollment Number</th>
+              <th>Student Name</th>
+              <th>Class</th>
+              <th>Section</th>
+              <th>Reason</th>
+              <th>Leave Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entry of listOfLeaves; let i = index">
+              <td>128345</td>
+              <td>{{ entry.studentName }}</td>
+              <td>{{ entry.class }}</td>
+              <td>{{ entry.section }}</td>
+              <td>{{ entry.reason }}</td>
+              <td>{{ entry.startDate }} to {{ entry.endDate }}</td>
+              <td>{{ entry.statusApproved ? 'Approved':'Unapproved' }}</td>
+              <td class="actions">
+                <i class="bi bi-eye" (click)="viewEntry(entry)" style="color: #FFC700; font-size: larger;"></i>
+                <i class="bi bi-pencil-square" (click)="editEntry(i)" style="color: #FFC700; font-size: larger;"></i>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+@if(toggleAddLeavePopup){
+  <div class="add-popup">
+    <div id="leave-form" class="form-container" >
+      <div class="d-flex justify-content-between">
+        <h2 class="form-title">Add New leave</h2>
+        <i class="bi bi-x-circle-fill" style="cursor: pointer; font-size: larger;" (click)="toggleAddLeave()"></i>
+      </div>
+      <ng-container [formGroup]="addLeaveForm">
+        <div class="d-flex justify-content-around"> 
+          <span class="form-section-one">
+            <div class="form-group">
+              <div class="select-container">
+                <select id="class"  class="form-control" formControlName="class" >
+                  <option value="">Select Class</option>
+                  <option *ngFor="let class of listOfClasses" [value]="class.value">
+                    {{ class.numeral }}
+                  </option>
+                </select>
+                <i class="bi bi-chevron-down select-icon"></i>
+              </div>
+              
+            </div>
+            <div class="form-group">
+              <div class="select-container">
+                <select id="section"  class="form-control" formControlName="section" >
+                  <option value="">Select Section</option>
+                  <option *ngFor="let section of listOfSections" [value]="section">
+                    {{ section }}
+                  </option>
+                </select>
+                <i class="bi bi-chevron-down select-icon"></i>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="select-container">
+                <select id="student"  class="form-control" formControlName="studentName" >
+                  <option value="">Select Student</option>
+                  <option *ngFor="let student of listOfStudents" [value]="student.id">
+                    {{ student.firstName }} {{ student.lastName }}
+                  </option>
+                </select>
+                <i class="bi bi-chevron-down select-icon"></i>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <textarea id="reason"  class="form-control" placeholder="Reason" formControlName="reason" ></textarea>
+            </div>
+          </span>
+        
+          <span class="form-section-two">
+            <div class="form-group flex-row">
+              <label for="leave-type">Number of Leave days:</label>
+              <div class="radio-group">
+                <input type="radio" id="single-day"  value="single" class="radio-input single-day" formControlName="singleDay" >
+                <label for="single-day" class="single-day-lbl">Single Day</label>
+                <input type="radio" id="multiple-days"  value="multiple" class="radio-input multiple-days" formControlName="multipleDay" >
+                <label for="multiple-days" class="multiple-days-lbl">Multiple Days</label>
+              </div>
+            </div>
+            <div class="form-group date-group">
+              <div class="input-container">
+                <input type="text" id="start-date" class="form-control date-input" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="startDate"  required>
+                <i class="bi bi-calendar calendar-icon" ></i>
+              </div>
+            </div>
+            <div class="form-group date-group">
+              <div class="input-container">
+                <input type="text" id="end-date"  class="form-control date-input" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="endDate"  required>
+                <i class="bi bi-calendar calendar-icon"></i>
+              </div>
+            </div>
+                    
+            <div class="form-group flex-row">
+              <label for="status">Status:</label>
+              <div class="radio-group">
+                <input type="radio" id="approved" value="approved" class="radio-input" formControlName="statusApproved" >
+                <label for="approved">Approved</label>
+                <input type="radio" id="unapproved"  value="unapproved" class="radio-input" formControlName="statusUnApproved">
+                <label for="unapproved">Unapproved</label>
+              </div>
+            </div>
+          </span>
+        </div>
+      </ng-container>
+      
+  
+      <div class="tab-buttons" *ngIf="!viewOnly && !editOnly">
+        <button class="tab-reset" (click)="resetForm()">RESET</button>
+        <button class="tab-add-leave active" (click)="addLeave()">ADD LEAVE</button>
+      </div>
+      <div class="tab-buttons" *ngIf="editOnly">
+        <button class="tab-add-leave active" (click)="editLeave()">Edit</button>
+      </div>
+    </div>  
+  </div>
+}
